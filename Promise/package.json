@@ -1,0 +1,20 @@
+{
+  "name": "dailylearning",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js -i ./data/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SiNanQrn/Dailylearning.git"
+  },
+  "keywords": [],
+  "author": "", 
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SiNanQrn/Dailylearning/issues"
+  },
+  "homepage": "https://github.com/SiNanQrn/Dailylearning#readme"
+}
