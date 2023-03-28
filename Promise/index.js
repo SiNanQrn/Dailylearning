@@ -4,27 +4,25 @@ let promise1 = new MyPromise((resolve, reject) => {
   resolve("promise1");
 });
 
-let promise2 = promise1.then((val) => {
-  // return new Error("Error");
-  // return Promise.resolve('ssd')
-  return new MyPromise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(
-        new MyPromise((resolve, reject) => {
-          resolve(
-            new MyPromise((resolve, reject) => {
-              resolve("eeee",val);
-            })
-          );
-        })
-      );
-    }, 2000);
+promise1
+  .then((val) => {
+    return new MyPromise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(
+          new MyPromise((resolve, reject) => {
+            resolve(
+              new MyPromise((resolve, reject) => {
+                resolve("eeee", val);
+              })
+            );
+          })
+        );
+      }, 2000);
+    });
+  })
+  .then((val) => {
+    console.log(val);
   });
-});
-
-promise2.then((val) => {
-  console.log(val);
-});
 
 // let promise = promise1
 //   .then((val) => {

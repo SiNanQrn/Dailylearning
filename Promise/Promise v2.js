@@ -11,20 +11,20 @@ function resolvePromise(promise2, x, resolve, reject) {
 
   let called = false;
   if ((typeof x === "object" && x !== null) || typeof x === "function") {
-    let then = x.then;
     try {
+      let then = x.then;
       if (typeof then === "function") {
         then.call(
           x,
           (y) => {
             if (called) return;
             called = true;
-            resolve(y);
+            resolvePromise(promise2, y, resolve, reject);
           },
           (r) => {
             if (called) return;
             called = true;
-            reject(r);
+            resolvePromise(promise2, r, resolve, reject);
           }
         );
       } else {
@@ -73,7 +73,7 @@ class MyPromise {
   }
 
   then(onFulfilled, onRejected) {
-    let promise2 = new Promise((resolve, reject) => {
+    let promise2 = new MyPromise((resolve, reject) => {
       // FULFILLED状态
       setTimeout(() => {
         if (this.status === FULFILLED) {
