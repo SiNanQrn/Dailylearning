@@ -2,7 +2,7 @@ const PENDING = "pending";
 const FULFILLED = "fulfilled";
 const REJECTED = "reject";
 
-class Promise {
+class MyPromise {
   constructor(executor) {
     if (typeof executor !== "function") {
       throw new TypeError(`Promise resolver ${executor} is not a function`);
@@ -150,13 +150,13 @@ function resolvePromise(promise2, x, resolve, reject) {
   }
 }
 
-Promise.defer = Promise.deferred = function () {
+MyPromise.defer = MyPromise.deferred = function () {
   let dfd = {};
-  dfd.promise = new Promise((resolve, reject) => {
+  dfd.promise = new MyPromise((resolve, reject) => {
     dfd.resolve = resolve;
     dfd.reject = reject;
   });
   return dfd;
 };
-module.exports = Promise;
+module.exports = MyPromise;
 // promises-aplus-tests xxx
