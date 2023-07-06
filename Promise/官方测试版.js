@@ -159,4 +159,7 @@ Promise.defer = Promise.deferred = function () {
   return dfd;
 };
 module.exports = Promise;
+// 安装官方测试用例 promises-aplus-tests
+// npm i promises-aplus-tests -D
+
 // promises-aplus-tests xxx
