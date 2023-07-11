@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script> -->
+    <script src="./dept.js"></script>
+    <script src="./compiler.js"></script>
+    <script src="./observer.js"></script>
+    <script src="./myVue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>小胡子的使用</h1>
+      <h2>{{msg}}</h2>
+      <h2>{{count}}</h2>
+      <hr />
+      <h1>v-text的使用</h1>
+      <h2 v-text="msg" class="box"></h2>
+      <hr />
+      <h1>v-model的使用</h1>
+      <input type="text" v-model="msg" />
+      <input type="text" v-model="count" />
+    </div>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "Hello MyVue",
+          count: 18,
+          scores: ["a", "b", "c"],
+        },
+      });
+    </script>
+  </body>
+</html>
