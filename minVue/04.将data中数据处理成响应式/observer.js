@@ -8,7 +8,7 @@ class Observer {
       return;
     }
 
-      Object.keys(data).forEach((key) => {
+    Object.keys(data).forEach((key) => {
       this.defineReactive(data, key, data[key]);
     });
   }
