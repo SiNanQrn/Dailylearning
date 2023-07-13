@@ -1,3 +1,6 @@
+/* 
+  Observer 作用是将 $data 数据处理成响应式
+ */
 class Observer {
   constructor(data) {
     this.walk(data);
@@ -14,15 +17,21 @@ class Observer {
   }
   //处理响应式
   defineReactive(obj, key, val) {
-    let dept = new Dept()
     let that = this;
     this.walk(val);
+
+    // 收集依赖，派发更新
+    let dept = new Dept();
+
     Object.defineProperty(obj, key, {
       enumerable: true,
       configurable: true,
       get() {
         console.log("get...");
-        dept.target
+        // target 是静态属性，静态属性是通过类名访问的
+        // 收集依赖，也就是说把 watcher 添加到 subs 中
+        // 稍后我们会创建一个 watcher 赋值给 Dept.target
+        Dept.target && dept.addSub(Dept.target);
         return val;
       },
       set(newVal) {
@@ -32,6 +41,9 @@ class Observer {
         }
         val = newVal;
         that.walk(newVal);
+
+        // 通知 watcher，派发更新
+        dept.notify()
       },
     });
   }
